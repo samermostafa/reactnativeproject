@@ -7,6 +7,7 @@ import {
     Pressable,
     StyleSheet,
     Alert,
+    Image,
 } from 'react-native';
 
 function LoginScreen() {
@@ -33,10 +34,23 @@ function LoginScreen() {
     return (
 
         <View style={styles.container}>
+            <Image
+                source={require('../assets/logoapp.png')}
+                style={styles.logo}
+                resizeMode="contain"
+            />
 
-            <Text style={styles.title}>
-                Login
-            </Text>
+            <View style={styles.header}>
+
+                <Text style={styles.title}>
+                    Welcome Back
+                </Text>
+
+                <Text style={styles.subTitle}>
+                    Sign in to continue
+                </Text>
+
+            </View>
 
             <TextInput
                 style={styles.input}
@@ -61,13 +75,20 @@ function LoginScreen() {
                 </Text>
             </Pressable>
 
-            <Pressable
-                onPress={() => navigation.navigate('Register')}
-            >
+            <View style={styles.registerContainer}>
+
                 <Text style={styles.registerText}>
-                    Don't have an account? Register
+                    Don't have an account?
                 </Text>
-            </Pressable>
+
+                <Pressable
+                    onPress={() => navigation.navigate('Register')}>
+                    <Text style={styles.registerLink}>
+                        Register
+                    </Text>
+                </Pressable>
+
+            </View>
 
         </View>
 
@@ -84,9 +105,9 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
+        backgroundColor: '#ffffff',
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#f8c978',
+        paddingHorizontal: 25,
     },
 
     title: {
@@ -95,33 +116,70 @@ const styles = StyleSheet.create({
     },
 
     input: {
-        width: '90%',
-        backgroundColor: '#fff',
+        backgroundColor: '#F5F5F5',
         borderWidth: 1,
-        borderColor: '#ddd',
-        borderRadius: 10,
-        padding: 12,
-        marginTop: 15,
+        borderColor: '#E7E7E7',
+        borderRadius: 12,
+        paddingHorizontal: 16,
+        height: 55,
+        fontSize: 16,
+        marginBottom: 15,
     },
     button: {
-        width: '90%',
         backgroundColor: '#F4A825',
-        padding: 15,
-        borderRadius: 10,
+        height: 55,
+        borderRadius: 12,
+        justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 25,
+        marginTop: 5,
     },
 
     buttonText: {
-        color: '#fff',
+        color: '#FFFFFF',
         fontSize: 18,
         fontWeight: 'bold',
     },
+
+    header: {
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+
+    logo: {
+    width: 130,
+    height: 130,
+    alignSelf: 'center',
+    marginBottom: 5,
+},
+
+    title: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#222',
+    },
+
+    subTitle: {
+        fontSize: 15,
+        color: '#666',
+        marginTop: 5,
+    },
+    registerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 5,
+    },
+
     registerText: {
-        marginTop: 20,
+        color: '#555',
+        fontSize: 15,
+    },
+
+    registerLink: {
         color: '#F4A825',
-        fontSize: 16,
-        fontWeight: '600',
+        fontWeight: 'bold',
+        marginLeft: 5,
+        fontSize: 15,
     },
 
 });

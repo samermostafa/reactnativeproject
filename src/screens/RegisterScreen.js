@@ -7,6 +7,7 @@ import {
     Pressable,
     StyleSheet,
     Alert,
+    Image,
 } from 'react-native';
 
 function RegisterScreen() {
@@ -15,6 +16,9 @@ function RegisterScreen() {
     const [email, setEmail] = useState('');
 
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+
     const navigation = useNavigation();
 
     function handleRegister() {
@@ -44,10 +48,23 @@ function RegisterScreen() {
 
         <View style={styles.container}>
 
-            <Text style={styles.title}>
-                Register
-            </Text>
+            <View style={styles.header}>
 
+                <Image
+                    source={require('../assets/logoapp.png')}
+                    style={styles.logo}
+                    resizeMode="contain"
+                />
+
+                <Text style={styles.title}>
+                    Create Account
+                </Text>
+
+                <Text style={styles.subTitle}>
+                    Create your account
+                </Text>
+
+            </View>
             <TextInput
                 style={styles.input}
                 placeholder="Full Name"
@@ -67,16 +84,35 @@ function RegisterScreen() {
                 placeholder="Password"
                 value={password}
                 onChangeText={setPassword}
-                secureTextEntry={true}
+            />
+
+            <TextInput
+                style={styles.input}
+                placeholder="Confirm Password"
             />
             <Pressable
                 style={styles.button}
                 onPress={handleRegister}
             >
                 <Text style={styles.buttonText}>
-                    Register
+                    Create Account
                 </Text>
             </Pressable>
+            <View style={styles.loginContainer}>
+
+                <Text style={styles.loginText}>
+                    Already have an account?
+                </Text>
+
+                <Pressable
+                    onPress={() => navigation.replace('Login')}
+                >
+                    <Text style={styles.loginLink}>
+                        Login
+                    </Text>
+                </Pressable>
+
+            </View>
 
         </View>
 
@@ -95,7 +131,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f8c978',
+        backgroundColor: '#ffffff',
     },
 
     title: {
@@ -118,7 +154,7 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
-        marginTop: 25,
+        marginTop: 15,
     },
 
     buttonText: {
@@ -131,6 +167,40 @@ const styles = StyleSheet.create({
         color: '#F4A825',
         fontSize: 16,
         fontWeight: '600',
+    },
+    loginContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 5,
+    },
+
+    loginText: {
+        color: '#555',
+        fontSize: 15,
+    },
+
+    loginLink: {
+        color: '#F4A825',
+        fontSize: 15,
+        fontWeight: 'bold',
+        marginLeft: 5,
+    },
+    header: {
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+
+    logo: {
+        width: 110,
+        height: 110,
+        alignSelf: 'center',
+        marginBottom: 5,
+    },
+    subTitle: {
+        fontSize: 15,
+        color: '#666',
+        marginTop: 5,
     },
 
 });
