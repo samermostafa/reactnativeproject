@@ -1,4 +1,8 @@
 import React from 'react';
+import auth from '@react-native-firebase/auth';
+import { useNavigation } from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
+import { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -6,9 +10,54 @@ import {
   Image,
   Pressable,
   ScrollView,
+  Alert,
 } from 'react-native';
 
 export default function Profile() {
+  const navigation = useNavigation();
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [totalTasks, setTotalTasks] = useState(0);
+  async function handleLogout() {
+
+    try {
+
+      await auth().signOut();
+
+      navigation.replace('Login');
+
+    } catch (error) {
+
+      Alert.alert(
+        'Error',
+        error.message,
+      );
+
+    }
+
+  }
+  useEffect(() => {
+
+    const user = auth().currentUser;
+
+    if (user) {
+
+      setUserName(user.displayName || 'User');
+      setUserEmail(user.email || '');
+
+    }
+
+    const subscriber = firestore()
+      .collection('tasks')
+      .onSnapshot(snapshot => {
+
+        setTotalTasks(snapshot.size);
+
+      });
+
+    return () => subscriber();
+
+  }, []);
 
   return (
 
@@ -23,11 +72,11 @@ export default function Profile() {
       />
 
       <Text style={styles.name}>
-        Mohammed Qunoo
+        {userName}
       </Text>
 
       <Text style={styles.email}>
-        mohammed@gmail.com
+        {userEmail}
       </Text>
 
       <View style={styles.card}>
@@ -37,7 +86,7 @@ export default function Profile() {
         </Text>
 
         <Text style={styles.cardValue}>
-          12
+          {totalTasks}
         </Text>
 
       </View>
@@ -48,7 +97,8 @@ export default function Profile() {
         </Text>
       </Pressable>
 
-      <Pressable style={styles.logoutButton}>
+      <Pressable style={styles.logoutButton}
+        onPress={handleLogout}>
         <Text style={styles.buttonText}>
           Logout
         </Text>

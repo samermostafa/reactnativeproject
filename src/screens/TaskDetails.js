@@ -1,11 +1,94 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import firestore from '@react-native-firebase/firestore';
+import { useNavigation } from '@react-navigation/native';
+import {
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  StyleSheet,
+  Alert,
+  ScrollView,
+} from 'react-native';
 
 export default function TaskDetails({ route }) {
   const { task } = route.params;
+  const navigation = useNavigation();
+  const [isEditing, setIsEditing] = useState(false);
+  const [title, setTitle] = useState(task.title);
+  const [description, setDescription] = useState(task.description);
+  async function handleDelete() {
 
+    Alert.alert(
+      'Delete Task',
+      'Are you sure you want to delete this task?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: async () => {
+
+            try {
+
+              await firestore()
+                .collection('tasks')
+                .doc(task.id)
+                .delete();
+
+              navigation.goBack();
+
+            } catch (error) {
+
+              Alert.alert(
+                'Error',
+                error.message,
+              );
+
+            }
+
+          },
+        },
+      ],
+    );
+
+  }
+  async function handleUpdate() {
+
+    try {
+
+      await firestore()
+        .collection('tasks')
+        .doc(task.id)
+        .update({
+          title,
+          description,
+        });
+
+      Alert.alert(
+        'Success',
+        'Task updated successfully'
+      );
+
+      setIsEditing(false);
+
+    } catch (error) {
+
+      Alert.alert(
+        'Error',
+        error.message
+      );
+
+    }
+
+  }
   return (
-    <View style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}>
       <Text style={styles.taskKey}>{task.key}</Text>
       <Text style={styles.screenTitle}>
         Task Details
@@ -17,9 +100,17 @@ export default function TaskDetails({ route }) {
           Title
         </Text>
 
-        <Text style={styles.value}>
-          {task.title}
-        </Text>
+        {isEditing ? (
+          <TextInput
+            style={styles.input}
+            value={title}
+            onChangeText={setTitle}
+          />
+        ) : (
+          <Text style={styles.value}>
+            {title}
+          </Text>
+        )}
 
       </View>
 
@@ -29,9 +120,18 @@ export default function TaskDetails({ route }) {
           Description
         </Text>
 
-        <Text style={styles.value}>
-          {task.description}
-        </Text>
+        {isEditing ? (
+          <TextInput
+            style={[styles.input, styles.descriptionInput]}
+            value={description}
+            onChangeText={setDescription}
+            multiline
+          />
+        ) : (
+          <Text style={styles.value}>
+            {description}
+          </Text>
+        )}
 
       </View>
       <View style={styles.card}>
@@ -58,30 +158,38 @@ export default function TaskDetails({ route }) {
       </View>
       <Pressable
         style={styles.editButton}
-        onPress={() => { }}>
+        onPress={() => {
 
+          if (isEditing) {
+            handleUpdate();
+          } else {
+            setIsEditing(true);
+          }
+
+        }}>
         <Text style={styles.buttonText}>
-          Edit Task
+          {isEditing ? 'Save Changes' : 'Edit Task'}
         </Text>
 
       </Pressable>
       <Pressable
         style={styles.deleteButton}
-        onPress={() => { }}>
+        onPress={handleDelete}>
 
         <Text style={styles.buttonText}>
           Delete Task
         </Text>
 
       </Pressable>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     padding: 20,
+    paddingBottom: 40,
     backgroundColor: '#fff',
   },
 
@@ -134,5 +242,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     marginTop: 12,
+  },
+  input: {
+    backgroundColor: '#F5F5F5',
+    borderWidth: 1,
+    borderColor: '#DDDDDD',
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 12,
+    fontSize: 16,
+    marginTop: 8,
+  },
+
+  descriptionInput: {
+    minHeight: 100,
+    textAlignVertical: 'top',
   },
 });

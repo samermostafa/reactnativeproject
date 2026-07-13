@@ -1,18 +1,40 @@
-import React, {useState} from 'react';
-import {View, Text, FlatList, StyleSheet, Pressable} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState } from 'react';
+import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import TaskItem from '../components/TaskItem';
 import AddTask from '../components/AddTask';
-
+import firestore from '@react-native-firebase/firestore';
+import { useEffect } from 'react';
 export default function Home() {
   const navigation = useNavigation();
 
-  const [tasksItems, setTasksItems] = useState([
-    {key: 'Task 1', title: 'Task 1', description: 'Study React Native'},
-    {key: 'Task 2', title: 'Task 2', description: 'Go to Gym'},
-    {key: 'Task 3', title: 'Task 3', description: 'Finish Homework'},
-  ]);
+  const [tasksItems, setTasksItems] = useState([]);
+  useEffect(() => {
+
+    const subscriber = firestore()
+      .collection('tasks')
+      .where('uid', '==', auth().currentUser.uid)
+      .onSnapshot(querySnapshot => {
+
+        const tasks = [];
+
+        querySnapshot.forEach(documentSnapshot => {
+
+          tasks.push({
+            id: documentSnapshot.id,
+            ...documentSnapshot.data(),
+          });
+
+        });
+
+        setTasksItems(tasks);
+
+      });
+
+    return () => subscriber();
+
+  }, []);
 
   const handleDelete = key => {
     setTasksItems(prevTasks =>
@@ -20,16 +42,20 @@ export default function Home() {
     );
   };
 
-  const handleAddTask = (title, description) => {
-    const newTaskNumber = tasksItems.length + 1;
+  const handleAddTask = async (title, description) => {
+    try {
+      await firestore()
+        .collection('tasks')
+        .add({
 
-    const newTask = {
-      key: `Task ${newTaskNumber}`,
-      title: title,
-      description: description,
-    };
+          title,
+          description,
+          uid: auth().currentUser.uid,
 
-    setTasksItems(prevTasks => [...prevTasks, newTask]);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -38,19 +64,19 @@ export default function Home() {
       <FlatList
         data={tasksItems}
         ListHeaderComponent={
-        <>
+          <>
             <Text style={styles.title}>
-                To Do List
+              To Do List
             </Text>
 
             <AddTask onAddTask={handleAddTask} />
-        </>
-    }
-        keyExtractor={item => item.key}
-        renderItem={({item}) => (
+          </>
+        }
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
           <Pressable
             onPress={() =>
-              navigation.navigate('TaskDetails', {task: item})
+              navigation.navigate('TaskDetails', { task: item })
             }>
             <TaskItem item={item} onDelete={handleDelete} />
           </Pressable>

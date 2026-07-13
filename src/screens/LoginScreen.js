@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 import {
     View,
     Text,
@@ -15,19 +16,39 @@ function LoginScreen() {
     const [password, setPassword] = useState('');
     const navigation = useNavigation();
 
-    function handleLogin() {
+    async function handleLogin() {
 
-        if (email === '' || password === '') {
-
+        if (
+            email.trim() === '' ||
+            password.trim() === ''
+        ) {
             Alert.alert(
                 'Error',
                 'Please enter email and password'
             );
-
             return;
         }
+        try {
+            await auth().signInWithEmailAndPassword(
+                email,
+                password,
+            );
+            navigation.replace('Main');
+        } catch (error) {
 
-        navigation.replace('Main');
+    if (error.code === 'auth/invalid-credential') {
+        Alert.alert(
+            'Login Failed',
+            'Invalid email or password'
+        );
+    } else {
+        Alert.alert(
+            'Error',
+            error.message
+        );
+    }
+
+}
 
     }
 
@@ -57,6 +78,8 @@ function LoginScreen() {
                 placeholder="Email"
                 value={email}
                 onChangeText={setEmail}
+                keyboardType="email-address"
+                autoCapitalize="none"
             />
 
             <TextInput
@@ -110,11 +133,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 25,
     },
 
-    title: {
-        fontSize: 32,
-        fontWeight: 'bold',
-    },
-
     input: {
         backgroundColor: '#F5F5F5',
         borderWidth: 1,
@@ -146,11 +164,11 @@ const styles = StyleSheet.create({
     },
 
     logo: {
-    width: 130,
-    height: 130,
-    alignSelf: 'center',
-    marginBottom: 5,
-},
+        width: 130,
+        height: 130,
+        alignSelf: 'center',
+        marginBottom: 5,
+    },
 
     title: {
         fontSize: 28,

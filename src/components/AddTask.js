@@ -1,19 +1,24 @@
-import React, {useState} from 'react';
-import {View, TextInput, Pressable, Text, StyleSheet} from 'react-native';
+import React, { useState } from 'react';
+import { View, TextInput, Pressable, Text, StyleSheet } from 'react-native';
 
-export default function AddTask({onAddTask}) {
+export default function AddTask({ onAddTask }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const handleAddTask = () => {
-    if (title.trim() === '' || description.trim() === '') {
+    if (
+      title.trim() === '' ||
+      description.trim() === ''
+    ) {
       return;
     }
-
-    onAddTask(title, description);
-
+    onAddTask(
+      title,
+      description,
+    );
     setTitle('');
     setDescription('');
+
   };
 
   return (
