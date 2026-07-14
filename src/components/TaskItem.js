@@ -36,15 +36,6 @@ const TaskItem = ({ item, onDelete, onPress }) => {
 
         </View>
 
-        <Pressable
-          style={styles.deleteButton}
-          onPress={() => onDelete(item.key)}
-        >
-          <Text style={styles.deleteText}>
-            Delete
-          </Text>
-        </Pressable>
-
       </View>
 
     </Pressable>

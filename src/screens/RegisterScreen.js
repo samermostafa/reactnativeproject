@@ -64,6 +64,17 @@ function RegisterScreen() {
                 password,
             );
 
+            await auth().currentUser.updateProfile({
+                displayName: name,
+            });
+
+            Alert.alert(
+                'Success',
+                'Account Created Successfully',
+            );
+
+            navigation.replace('Login');
+
             console.log('4');
 
         } catch (error) {
@@ -75,167 +86,168 @@ function RegisterScreen() {
                 error.message,
             );
 
-        }}
-        return (
+        }
+    }
+    return (
 
-            <View style={styles.container}>
+        <View style={styles.container}>
 
-                <View style={styles.header}>
+            <View style={styles.header}>
 
-                    <Image
-                        source={require('../assets/logoapp.png')}
-                        style={styles.logo}
-                        resizeMode="contain"
-                    />
-
-                    <Text style={styles.title}>
-                        Create Account
-                    </Text>
-
-                    <Text style={styles.subTitle}>
-                        Create your account
-                    </Text>
-
-                </View>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Full Name"
-                    value={name}
-                    onChangeText={setName}
+                <Image
+                    source={require('../assets/logoapp.png')}
+                    style={styles.logo}
+                    resizeMode="contain"
                 />
 
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email"
-                    value={email}
-                    onChangeText={setEmail}
-                />
+                <Text style={styles.title}>
+                    Create Account
+                </Text>
 
-                <TextInput
-                    style={styles.input}
-                    placeholder="Password"
-                    value={password}
-                    onChangeText={setPassword}
-                />
+                <Text style={styles.subTitle}>
+                    Create your account
+                </Text>
 
-                <TextInput
-                    style={styles.input}
-                    placeholder="Confirm Password"
-                    value={confirmPassword}
-                    onChangeText={setConfirmPassword}
-                    secureTextEntry
-                />
+            </View>
+            <TextInput
+                style={styles.input}
+                placeholder="Full Name"
+                value={name}
+                onChangeText={setName}
+            />
+
+            <TextInput
+                style={styles.input}
+                placeholder="Email"
+                value={email}
+                onChangeText={setEmail}
+            />
+
+            <TextInput
+                style={styles.input}
+                placeholder="Password"
+                value={password}
+                onChangeText={setPassword}
+            />
+
+            <TextInput
+                style={styles.input}
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
+                secureTextEntry
+            />
+            <Pressable
+                style={styles.button}
+                onPress={handleRegister}
+            >
+                <Text style={styles.buttonText}>
+                    Create Account
+                </Text>
+            </Pressable>
+            <View style={styles.loginContainer}>
+
+                <Text style={styles.loginText}>
+                    Already have an account?
+                </Text>
+
                 <Pressable
-                    style={styles.button}
-                    onPress={handleRegister}
+                    onPress={() => navigation.replace('Login')}
                 >
-                    <Text style={styles.buttonText}>
-                        Create Account
+                    <Text style={styles.loginLink}>
+                        Login
                     </Text>
                 </Pressable>
-                <View style={styles.loginContainer}>
-
-                    <Text style={styles.loginText}>
-                        Already have an account?
-                    </Text>
-
-                    <Pressable
-                        onPress={() => navigation.replace('Login')}
-                    >
-                        <Text style={styles.loginLink}>
-                            Login
-                        </Text>
-                    </Pressable>
-
-                </View>
 
             </View>
 
+        </View>
 
 
 
-        );
 
-    }
+    );
 
-    export default RegisterScreen;
+}
 
-    const styles = StyleSheet.create({
+export default RegisterScreen;
 
-        container: {
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: '#ffffff',
-        },
+const styles = StyleSheet.create({
 
-        title: {
-            fontSize: 32,
-            fontWeight: 'bold',
-        },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#ffffff',
+    },
 
-        input: {
-            width: '90%',
-            backgroundColor: '#fff',
-            borderWidth: 1,
-            borderColor: '#ddd',
-            borderRadius: 10,
-            padding: 12,
-            marginTop: 15,
-        },
-        button: {
-            width: '90%',
-            backgroundColor: '#F4A825',
-            padding: 15,
-            borderRadius: 10,
-            alignItems: 'center',
-            marginTop: 15,
-        },
+    title: {
+        fontSize: 32,
+        fontWeight: 'bold',
+    },
 
-        buttonText: {
-            color: '#fff',
-            fontSize: 18,
-            fontWeight: 'bold',
-        },
-        registerText: {
-            marginTop: 20,
-            color: '#F4A825',
-            fontSize: 16,
-            fontWeight: '600',
-        },
-        loginContainer: {
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: 5,
-        },
+    input: {
+        width: '90%',
+        backgroundColor: '#fff',
+        borderWidth: 1,
+        borderColor: '#ddd',
+        borderRadius: 10,
+        padding: 12,
+        marginTop: 15,
+    },
+    button: {
+        width: '90%',
+        backgroundColor: '#F4A825',
+        padding: 15,
+        borderRadius: 10,
+        alignItems: 'center',
+        marginTop: 15,
+    },
 
-        loginText: {
-            color: '#555',
-            fontSize: 15,
-        },
+    buttonText: {
+        color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    registerText: {
+        marginTop: 20,
+        color: '#F4A825',
+        fontSize: 16,
+        fontWeight: '600',
+    },
+    loginContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 5,
+    },
 
-        loginLink: {
-            color: '#F4A825',
-            fontSize: 15,
-            fontWeight: 'bold',
-            marginLeft: 5,
-        },
-        header: {
-            alignItems: 'center',
-            marginBottom: 20,
-        },
+    loginText: {
+        color: '#555',
+        fontSize: 15,
+    },
 
-        logo: {
-            width: 110,
-            height: 110,
-            alignSelf: 'center',
-            marginBottom: 5,
-        },
-        subTitle: {
-            fontSize: 15,
-            color: '#666',
-            marginTop: 5,
-        },
+    loginLink: {
+        color: '#F4A825',
+        fontSize: 15,
+        fontWeight: 'bold',
+        marginLeft: 5,
+    },
+    header: {
+        alignItems: 'center',
+        marginBottom: 20,
+    },
 
-    });
+    logo: {
+        width: 110,
+        height: 110,
+        alignSelf: 'center',
+        marginBottom: 5,
+    },
+    subTitle: {
+        fontSize: 15,
+        color: '#666',
+        marginTop: 5,
+    },
+
+});

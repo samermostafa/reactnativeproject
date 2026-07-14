@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 
 import TaskItem from '../components/TaskItem';
 import AddTask from '../components/AddTask';
@@ -35,12 +36,6 @@ export default function Home() {
     return () => subscriber();
 
   }, []);
-
-  const handleDelete = key => {
-    setTasksItems(prevTasks =>
-      prevTasks.filter(task => task.key !== key),
-    );
-  };
 
   const handleAddTask = async (title, description) => {
     try {
@@ -78,7 +73,7 @@ export default function Home() {
             onPress={() =>
               navigation.navigate('TaskDetails', { task: item })
             }>
-            <TaskItem item={item} onDelete={handleDelete} />
+            <TaskItem item={item}/>
           </Pressable>
         )}
       />

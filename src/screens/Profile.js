@@ -11,6 +11,8 @@ import {
   Pressable,
   ScrollView,
   Alert,
+  TextInput,
+
 } from 'react-native';
 
 export default function Profile() {
@@ -18,6 +20,9 @@ export default function Profile() {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [totalTasks, setTotalTasks] = useState(0);
+  const [isEditing, setIsEditing] = useState(false);
+  const [newName, setNewName] = useState('');
+
   async function handleLogout() {
 
     try {
@@ -43,12 +48,14 @@ export default function Profile() {
     if (user) {
 
       setUserName(user.displayName || 'User');
+      setNewName(user.displayName || 'User');
       setUserEmail(user.email || '');
 
     }
 
     const subscriber = firestore()
       .collection('tasks')
+      .where('uid', '==', auth().currentUser.uid)
       .onSnapshot(snapshot => {
 
         setTotalTasks(snapshot.size);
@@ -58,6 +65,29 @@ export default function Profile() {
     return () => subscriber();
 
   }, []);
+
+  async function handleEditProfile() {
+    if (isEditing) {
+      try {
+        await auth().currentUser.updateProfile({
+          displayName: newName,
+        });
+        setUserName(newName);
+        setIsEditing(false);
+        Alert.alert(
+          'Success',
+          'Profile updated successfully'
+        );
+      } catch (error) {
+        Alert.alert(
+          'Error',
+          error.message
+        );
+      }
+    } else {
+      setIsEditing(true);
+    }
+  }
 
   return (
 
@@ -71,9 +101,17 @@ export default function Profile() {
         resizeMode="contain"
       />
 
-      <Text style={styles.name}>
-        {userName}
-      </Text>
+      {isEditing ? (
+        <TextInput
+          style={styles.input}
+          value={newName}
+          onChangeText={setNewName}
+        />
+      ) : (
+        <Text style={styles.name}>
+          {userName}
+        </Text>
+      )}
 
       <Text style={styles.email}>
         {userEmail}
@@ -91,9 +129,9 @@ export default function Profile() {
 
       </View>
 
-      <Pressable style={styles.editButton}>
+      <Pressable style={styles.editButton} onPress={handleEditProfile} >
         <Text style={styles.buttonText}>
-          Edit Profile
+          {isEditing ? 'Save Changes' : 'Edit Profile'}
         </Text>
       </Pressable>
 
@@ -181,6 +219,17 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 17,
     fontWeight: 'bold',
+  },
+  input: {
+    width: '100%',
+    backgroundColor: '#F5F5F5',
+    borderWidth: 1,
+    borderColor: '#DDD',
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    fontSize: 18,
+    textAlign: 'center',
   },
 
 });
