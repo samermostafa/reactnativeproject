@@ -6,6 +6,8 @@ import {
   Pressable,
   StyleSheet,
 } from 'react-native';
+import COLORS from '../styles/colors';
+import FONTS from '../styles/fonts';
 
 const TaskItem = ({ item, onDelete, onPress }) => {
   return (
@@ -14,17 +16,11 @@ const TaskItem = ({ item, onDelete, onPress }) => {
       <View style={styles.container}>
 
         <Image
-          source={{
-            uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt1LRmQ1dwCl3pVz80_mimnHMPlrpiOv4II3l0PVV4rQ&s=10',
-          }}
+          source={require ('../assets/logootask.png')}
           style={styles.image}
         />
 
         <View style={styles.textContainer}>
-
-          <Text style={styles.taskNumber}>
-            {item.key}
-          </Text>
 
           <Text style={styles.title}>
             {item.title}
@@ -49,7 +45,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f8c978',
+    backgroundColor: COLORS.primary,
     padding: 15,
     borderRadius: 12,
     marginBottom: 15,
@@ -69,33 +65,35 @@ const styles = StyleSheet.create({
 
   taskNumber: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#000',
+    fontFamily: FONTS.bold,
+    color: COLORS.black,
   },
 
   title: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#222',
+    fontFamily: FONTS.semiBold,
+    color: COLORS.black,
     marginTop: 4,
   },
 
   description: {
     fontSize: 14,
-    color: '#666',
+    fontFamily: FONTS.regular,
+    color: COLORS.gray,
     marginTop: 3,
   },
 
   deleteButton: {
-    backgroundColor: '#e53935',
+    backgroundColor: COLORS.danger,
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 8,
   },
 
   deleteText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    color: COLORS.white,
+    fontSize: 14,
+    fontFamily: FONTS.bold,
   },
 
 });

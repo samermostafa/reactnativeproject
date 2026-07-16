@@ -1,4 +1,6 @@
 import React from 'react';
+import COLORS from '../styles/colors';
+import FONTS from '../styles/fonts';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
@@ -151,7 +153,7 @@ const styles = StyleSheet.create({
 
   container: {
     flexGrow: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.white,
     alignItems: 'center',
     paddingTop: 60,
     paddingBottom: 40,
@@ -166,20 +168,21 @@ const styles = StyleSheet.create({
 
   name: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: '#222',
+    fontFamily: FONTS.bold,
+    color: COLORS.black,
   },
 
   email: {
     fontSize: 15,
-    color: '#777',
+    fontFamily: FONTS.regular,
+    color: COLORS.gray,
     marginTop: 6,
     marginBottom: 30,
   },
 
   card: {
     width: '100%',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: COLORS.lightGray,
     borderRadius: 12,
     padding: 20,
     alignItems: 'center',
@@ -188,19 +191,20 @@ const styles = StyleSheet.create({
 
   cardTitle: {
     fontSize: 16,
-    color: '#666',
+    fontFamily: FONTS.regular,
+    color: COLORS.gray,
   },
 
   cardValue: {
     fontSize: 32,
-    fontWeight: 'bold',
-    color: '#F4A825',
+    fontFamily: FONTS.bold,
+    color: COLORS.primary,
     marginTop: 8,
   },
 
   editButton: {
     width: '100%',
-    backgroundColor: '#F4A825',
+    backgroundColor: COLORS.primary,
     borderRadius: 10,
     paddingVertical: 15,
     alignItems: 'center',
@@ -209,26 +213,29 @@ const styles = StyleSheet.create({
 
   logoutButton: {
     width: '100%',
-    backgroundColor: '#E74C3C',
+    backgroundColor: COLORS.danger,
     borderRadius: 10,
     paddingVertical: 15,
     alignItems: 'center',
   },
 
   buttonText: {
-    color: '#FFFFFF',
+    color: COLORS.white,
     fontSize: 17,
-    fontWeight: 'bold',
+    fontFamily: FONTS.bold,
   },
+
   input: {
     width: '100%',
-    backgroundColor: '#F5F5F5',
+    backgroundColor: COLORS.lightGray,
     borderWidth: 1,
-    borderColor: '#DDD',
+    borderColor: COLORS.border,
     borderRadius: 10,
     paddingHorizontal: 15,
     paddingVertical: 10,
     fontSize: 18,
+    fontFamily: FONTS.regular,
+    color: COLORS.black,
     textAlign: 'center',
   },
 

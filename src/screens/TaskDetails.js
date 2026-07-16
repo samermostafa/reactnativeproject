@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import COLORS from '../styles/colors';
+import FONTS from '../styles/fonts';
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -186,45 +188,52 @@ export default function TaskDetails({ route }) {
 }
 
 const styles = StyleSheet.create({
+
   container: {
     flexGrow: 1,
     padding: 20,
     paddingBottom: 40,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
   },
 
   taskKey: {
     fontSize: 28,
-    fontWeight: 'bold',
+    fontFamily: FONTS.bold,
+    color: COLORS.black,
     marginBottom: 25,
   },
 
   label: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: FONTS.bold,
+    color: COLORS.black,
     marginTop: 15,
   },
 
   value: {
     fontSize: 16,
+    fontFamily: FONTS.regular,
     marginTop: 5,
-    color: '#555',
+    color: COLORS.gray,
   },
+
   screenTitle: {
     fontSize: 30,
-    fontWeight: 'bold',
-    color: '#222',
+    fontFamily: FONTS.bold,
+    color: COLORS.black,
     textAlign: 'center',
     marginBottom: 30,
   },
+
   card: {
-    backgroundColor: '#F5F5F5',
+    backgroundColor: COLORS.lightGray,
     borderRadius: 12,
     padding: 18,
     marginBottom: 20,
   },
+
   editButton: {
-    backgroundColor: '#F4A825',
+    backgroundColor: COLORS.primary,
     paddingVertical: 15,
     borderRadius: 10,
     alignItems: 'center',
@@ -232,25 +241,29 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: '#FFFFFF',
+    color: COLORS.white,
     fontSize: 17,
-    fontWeight: 'bold',
+    fontFamily: FONTS.bold,
   },
+
   deleteButton: {
-    backgroundColor: '#E74C3C',
+    backgroundColor: COLORS.danger,
     paddingVertical: 15,
     borderRadius: 10,
     alignItems: 'center',
     marginTop: 12,
   },
+
   input: {
-    backgroundColor: '#F5F5F5',
+    backgroundColor: COLORS.lightGray,
     borderWidth: 1,
-    borderColor: '#DDDDDD',
+    borderColor: COLORS.border,
     borderRadius: 10,
     paddingHorizontal: 15,
     paddingVertical: 12,
     fontSize: 16,
+    fontFamily: FONTS.regular,
+    color: COLORS.black,
     marginTop: 8,
   },
 
@@ -258,4 +271,5 @@ const styles = StyleSheet.create({
     minHeight: 100,
     textAlignVertical: 'top',
   },
+
 });

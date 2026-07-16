@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import COLORS from '../styles/colors';
+import FONTS from '../styles/fonts';
 import auth from '@react-native-firebase/auth';
 import {
     View,
@@ -178,26 +180,31 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#ffffff',
+        backgroundColor: COLORS.white,
     },
 
     title: {
         fontSize: 32,
-        fontWeight: 'bold',
+        fontFamily: FONTS.bold,
+        color: COLORS.black,
     },
 
     input: {
         width: '90%',
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.white,
         borderWidth: 1,
-        borderColor: '#ddd',
+        borderColor: COLORS.border,
         borderRadius: 10,
         padding: 12,
         marginTop: 15,
+        fontSize: 16,
+        fontFamily: FONTS.regular,
+        color: COLORS.black,
     },
+
     button: {
         width: '90%',
-        backgroundColor: '#F4A825',
+        backgroundColor: COLORS.primary,
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
@@ -205,16 +212,18 @@ const styles = StyleSheet.create({
     },
 
     buttonText: {
-        color: '#fff',
+        color: COLORS.white,
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: FONTS.bold,
     },
+
     registerText: {
         marginTop: 20,
-        color: '#F4A825',
+        color: COLORS.primary,
         fontSize: 16,
-        fontWeight: '600',
+        fontFamily: FONTS.semiBold,
     },
+
     loginContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
@@ -223,16 +232,18 @@ const styles = StyleSheet.create({
     },
 
     loginText: {
-        color: '#555',
+        color: COLORS.gray,
         fontSize: 15,
+        fontFamily: FONTS.regular,
     },
 
     loginLink: {
-        color: '#F4A825',
+        color: COLORS.primary,
         fontSize: 15,
-        fontWeight: 'bold',
+        fontFamily: FONTS.bold,
         marginLeft: 5,
     },
+
     header: {
         alignItems: 'center',
         marginBottom: 20,
@@ -244,9 +255,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginBottom: 5,
     },
+
     subTitle: {
         fontSize: 15,
-        color: '#666',
+        fontFamily: FONTS.regular,
+        color: COLORS.gray,
         marginTop: 5,
     },
 

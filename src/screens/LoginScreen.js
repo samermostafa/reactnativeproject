@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import COLORS from '../styles/colors';
+import FONTS from '../styles/fonts';
 import auth from '@react-native-firebase/auth';
 import {
     View,
@@ -128,23 +130,26 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: COLORS.white,
         justifyContent: 'center',
         paddingHorizontal: 25,
     },
 
     input: {
-        backgroundColor: '#F5F5F5',
+        backgroundColor: COLORS.lightGray,
         borderWidth: 1,
-        borderColor: '#E7E7E7',
+        borderColor: COLORS.border,
         borderRadius: 12,
         paddingHorizontal: 16,
         height: 55,
         fontSize: 16,
+        fontFamily: FONTS.regular,
+        color: COLORS.black,
         marginBottom: 15,
     },
+
     button: {
-        backgroundColor: '#F4A825',
+        backgroundColor: COLORS.primary,
         height: 55,
         borderRadius: 12,
         justifyContent: 'center',
@@ -153,9 +158,9 @@ const styles = StyleSheet.create({
     },
 
     buttonText: {
-        color: '#FFFFFF',
+        color: COLORS.white,
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: FONTS.bold,
     },
 
     header: {
@@ -172,15 +177,17 @@ const styles = StyleSheet.create({
 
     title: {
         fontSize: 28,
-        fontWeight: 'bold',
-        color: '#222',
+        fontFamily: FONTS.bold,
+        color: COLORS.black,
     },
 
     subTitle: {
         fontSize: 15,
-        color: '#666',
+        fontFamily: FONTS.regular,
+        color: COLORS.gray,
         marginTop: 5,
     },
+
     registerContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
@@ -189,15 +196,16 @@ const styles = StyleSheet.create({
     },
 
     registerText: {
-        color: '#555',
+        color: COLORS.gray,
         fontSize: 15,
+        fontFamily: FONTS.regular,
     },
 
     registerLink: {
-        color: '#F4A825',
-        fontWeight: 'bold',
-        marginLeft: 5,
+        color: COLORS.primary,
         fontSize: 15,
+        fontFamily: FONTS.bold,
+        marginLeft: 5,
     },
 
 });

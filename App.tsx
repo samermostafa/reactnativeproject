@@ -19,7 +19,7 @@ import TaskDetails from './src/screens/TaskDetails';
 import Profile from './src/screens/Profile';
 import LoginScreen from './src/screens/LoginScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
-
+import AboutScreen from './src/screens/AboutScreen';
 
 const HomeStack = createNativeStackNavigator({
     screens: {
@@ -75,6 +75,13 @@ const MyDrawer = createDrawerNavigator({
             screen: Profile,
             options: {
                 title: 'Profile',
+            },
+        }),
+        
+        About: createDrawerScreen({
+            screen: AboutScreen,
+            options: {
+                title: 'About',
             },
         }),
     },

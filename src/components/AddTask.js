@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Pressable, Text, StyleSheet } from 'react-native';
-
+import COLORS from '../styles/colors';
+import FONTS from '../styles/fonts';
 export default function AddTask({ onAddTask }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -43,10 +44,10 @@ export default function AddTask({ onAddTask }) {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
+
   container: {
-    backgroundColor: '#f8c978',
+    backgroundColor: COLORS.primary,
     padding: 15,
     borderRadius: 12,
     marginBottom: 20,
@@ -54,23 +55,28 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
     borderWidth: 1,
-    borderColor: '#d9a441',
+    borderColor: COLORS.border,
     borderRadius: 8,
     padding: 10,
     marginBottom: 10,
+    fontSize: 16,
+    fontFamily: FONTS.regular,
+    color: COLORS.black,
   },
 
   addButton: {
-    backgroundColor: '#e53935',
+    backgroundColor: COLORS.danger,
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',
   },
 
   addButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    color: COLORS.white,
+    fontSize: 16,
+    fontFamily: FONTS.bold,
   },
+
 });

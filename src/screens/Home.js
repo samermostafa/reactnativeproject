@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import COLORS from '../styles/colors';
+import FONTS from '../styles/fonts';
 import auth from '@react-native-firebase/auth';
-
 import TaskItem from '../components/TaskItem';
 import AddTask from '../components/AddTask';
 import firestore from '@react-native-firebase/firestore';
@@ -86,12 +87,13 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     marginTop: 10,
-    backgroundColor: '#ffffff',
+    backgroundColor: COLORS.white,
   },
 
   title: {
     fontSize: 28,
-    fontWeight: 'bold',
+    fontFamily: FONTS.bold,
+    color: COLORS.black,
     textAlign: 'center',
     marginBottom: 20,
   },

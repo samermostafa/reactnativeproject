@@ -1,5 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
+import COLORS from '../styles/colors';
+import FONTS from '../styles/fonts';
 import { useNavigation } from '@react-navigation/native';
 import {
     View,
@@ -34,13 +36,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f8c978',
+        backgroundColor: COLORS.primary,
     },
 
     title: {
         fontSize: 32,
-        fontWeight: 'bold',
-        color: '#222',
+        fontFamily: FONTS.bold,
+        color: COLORS.white,
     },
 
 });
