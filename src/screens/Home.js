@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
+import { View, Text, FlatList, StyleSheet} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import COLORS from '../styles/colors';
 import FONTS from '../styles/fonts';
@@ -70,12 +70,12 @@ export default function Home() {
         }
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <Pressable
+          <TaskItem
+            item={item}
             onPress={() =>
               navigation.navigate('TaskDetails', { task: item })
-            }>
-            <TaskItem item={item}/>
-          </Pressable>
+            }
+          />
         )}
       />
     </View>

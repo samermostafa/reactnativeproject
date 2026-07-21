@@ -19,6 +19,7 @@ export default function TaskDetails({ route }) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
+  
   async function handleDelete() {
 
     Alert.alert(
@@ -147,17 +148,7 @@ export default function TaskDetails({ route }) {
         </Text>
 
       </View>
-      <View style={styles.card}>
-
-        <Text style={styles.label}>
-          Due Date
-        </Text>
-
-        <Text style={styles.value}>
-          15 July 2026
-        </Text>
-
-      </View>
+      
       <Pressable
         style={styles.editButton}
         onPress={() => {

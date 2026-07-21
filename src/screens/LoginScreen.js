@@ -80,8 +80,6 @@ function LoginScreen() {
                 placeholder="Email"
                 value={email}
                 onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
             />
 
             <TextInput

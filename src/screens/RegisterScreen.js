@@ -50,16 +50,10 @@ function RegisterScreen() {
 
         }
 
-        console.log('1');
-
         try {
 
-            console.log('2');
 
             const app = auth().app;
-            console.log(app.name);
-
-            console.log('3');
 
             await auth().createUserWithEmailAndPassword(
                 email,

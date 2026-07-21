@@ -1,6 +1,6 @@
 const COLORS = {
 
-  primary: '#ffcd76',
+  primary: '#ffc35c',
   danger: '#D9534F',
 
   white: '#FFFFFF',

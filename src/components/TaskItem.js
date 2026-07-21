@@ -9,7 +9,7 @@ import {
 import COLORS from '../styles/colors';
 import FONTS from '../styles/fonts';
 
-const TaskItem = ({ item, onDelete, onPress }) => {
+const TaskItem = ({ item, onPress }) => {
   return (
     <Pressable onPress={onPress}>
 
@@ -63,11 +63,6 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
 
-  taskNumber: {
-    fontSize: 18,
-    fontFamily: FONTS.bold,
-    color: COLORS.black,
-  },
 
   title: {
     fontSize: 16,
@@ -83,17 +78,5 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
 
-  deleteButton: {
-    backgroundColor: COLORS.danger,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 8,
-  },
-
-  deleteText: {
-    color: COLORS.white,
-    fontSize: 14,
-    fontFamily: FONTS.bold,
-  },
 
 });
