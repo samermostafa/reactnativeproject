@@ -1,97 +1,188 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# To Do List App
 
-# Getting Started
+A simple task management mobile application developed using React Native.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+The application allows users to create an account, log in, manage their personal tasks, edit their profile, and view their task information using Firebase Authentication and Cloud Firestore.
 
-## Step 1: Start Metro
+## Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- User Registration
+- User Login and Logout
+- Firebase Authentication
+- Create Tasks
+- View Tasks
+- Edit Tasks
+- Delete Tasks
+- Real-time Task Updates
+- User Profile
+- Edit User Name
+- Display Total Number of Tasks
+- Task Details Screen
+- About App and Developer Screen
+- Multiple Navigation Types
+- Custom App Icon
+- Custom Inter Font
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Technologies Used
 
-```sh
-# Using npm
+- React Native CLI
+- JavaScript
+- React Navigation
+- Firebase Authentication
+- Cloud Firestore
+- React Native Firebase
+
+## Navigation
+
+The application uses multiple navigation types:
+
+- Stack Navigation
+- Bottom Tab Navigation
+- Drawer Navigation
+
+Stack Navigation is used to move between screens such as Login, Register, and Task Details.
+
+Bottom Tab Navigation provides quick access to the main application screens.
+
+Drawer Navigation provides additional navigation options such as Profile and About.
+
+## Firebase Integration
+
+### Firebase Authentication
+
+Firebase Authentication is used for:
+
+- Creating user accounts
+- Signing users in
+- Signing users out
+- Updating the user's display name
+
+### Cloud Firestore
+
+Cloud Firestore is used to store and manage tasks.
+
+Each task contains information such as:
+
+- Title
+- Description
+- User ID (UID)
+
+The UID connects each task to the user who created it.
+
+Firestore real-time listeners are used so task changes are reflected automatically without manually refreshing the application.
+
+## Project Structure
+
+```text
+src/
+├── assets/
+├── components/
+│   ├── AddTask.js
+│   └── TaskItem.js
+├── navigation/
+├── screens/
+│   ├── SplashScreen.js
+│   ├── LoginScreen.js
+│   ├── RegisterScreen.js
+│   ├── Home.js
+│   ├── TaskDetails.js
+│   ├── Profile.js
+│   └── AboutScreen.js
+└── styles/
+    ├── colors.js
+    └── fonts.js
+```
+
+## Main Components
+
+### AddTask
+
+Responsible for receiving the task title and description from the user and passing the data to the Home screen.
+
+### TaskItem
+
+Responsible for displaying each task inside the task list.
+
+## Task Management
+
+Tasks are retrieved from Cloud Firestore according to the currently authenticated user's UID.
+
+The application supports the following CRUD operations:
+
+- Create
+- Read
+- Update
+- Delete
+
+Firestore `onSnapshot` is used to listen for real-time changes.
+
+## Custom Styling
+
+The application uses centralized styling files for colors and fonts.
+
+The Inter font family is used throughout the application to maintain a consistent design.
+
+## Requirements
+
+Before running the project, make sure the following are installed:
+
+- Node.js
+- npm
+- React Native development environment
+- Android Studio / Android SDK
+- Java JDK
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/samermostafa/reactnativeproject.git
+```
+
+Open the project:
+
+```bash
+cd reactnativeproject
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start Metro:
+
+```bash
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
+In another terminal, run the Android application:
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```bash
+npx react-native run-android
 ```
 
-### iOS
+## Developer
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+**Samer Qunoo**  
+**Student ID:** 120230688
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+Software Engineering Student  
+University of Palestine
 
-```sh
-bundle install
-```
+## Project Information
 
-Then, and every time you update your native dependencies, run:
+This project was developed as a React Native course project to demonstrate:
 
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- React Native Components
+- State Management using Hooks
+- Props and Component Communication
+- Firebase Integration
+- Authentication
+- Cloud Firestore
+- CRUD Operations
+- Navigation
+- Project Structure
+- Custom Fonts and Styling
