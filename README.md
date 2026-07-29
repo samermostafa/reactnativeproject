@@ -8,7 +8,7 @@ The application allows users to create an account, log in, manage their personal
 
 Click the image below to watch the full demo on YouTube.
 
-[![Watch Demo](https://img.youtube.com/vi/kCqFViz9TLg/maxresdefault.jpg)](https://youtube.com/shorts/kCqFViz9TLg)
+[![Watch Demo](https://img.youtube.com/vi/P3_-ZBKgu7Y/maxresdefault.jpg)](https://youtube.com/shorts/P3_-ZBKgu7Y)
 
 ## Features
 
