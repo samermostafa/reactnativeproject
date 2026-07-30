@@ -6,9 +6,9 @@ The application allows users to create an account, log in, manage their personal
 
 ## 🎥 Project Demo
 
-Click the image below to watch the full demo on YouTube.
+Watch the project demonstration video:
 
-[![Watch Demo](https://img.youtube.com/vi/P3_-ZBKgu7Y/maxresdefault.jpg)](https://youtube.com/shorts/P3_-ZBKgu7Y)
+[📹 Watch Demo Video](https://drive.google.com/file/d/1iK-Us95kV_E7L4GVaAJrBi1UqaqcgBR_/view?usp=sharing)
 
 ## Features
 
