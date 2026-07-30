@@ -4,7 +4,7 @@ A simple task management mobile application developed using React Native.
 
 The application allows users to create an account, log in, manage their personal tasks, edit their profile, and view their task information using Firebase Authentication and Cloud Firestore.
 
-## 🎥 Project Demo
+##  Project Demo
 
 Watch the project demonstration video:
 
