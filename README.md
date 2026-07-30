@@ -8,7 +8,7 @@ The application allows users to create an account, log in, manage their personal
 
 Watch the project demonstration video:
 
-[📹 Watch Demo Video](https://drive.google.com/file/d/1iK-Us95kV_E7L4GVaAJrBi1UqaqcgBR_/view?usp=sharing)
+[ Watch Demo Video](https://drive.google.com/file/d/1iK-Us95kV_E7L4GVaAJrBi1UqaqcgBR_/view?usp=sharing)
 
 ## Features
 
